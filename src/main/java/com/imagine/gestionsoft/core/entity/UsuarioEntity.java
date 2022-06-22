@@ -1,70 +1,79 @@
-package gestion;
+package com.imagine.gestionsoft.core.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import java.util.Date;
 import java.sql.Timestamp;
+import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * The persistent class for the usuario database table.
  * 
  */
 @Entity
-@Table(name="usuario")
-@NamedQuery(name="Usuario.findAll", query="SELECT u FROM Usuario u")
-public class Usuario implements Serializable {
+@Table(name = "usuario")
+public class UsuarioEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="usuario_id")
-	private int usuarioId;
+	@Column(name = "usuario_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer usuarioId;
 
-	@Column(name="cambio_contrasena")
-	private byte cambioContrasena;
+	// bi-directional many-to-one association to Negocio
+	@ManyToOne
+	@JoinColumn(name = "negocio_id")
+	private NegocioEntity negocio;
+
+	private String nombre;
 
 	private String contrasena;
 
 	private String email;
 
-	private byte estado;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="fecha_creacion")
-	private Date fechaCreacion;
-
-	@Column(name="fecha_inactivacion")
-	private Timestamp fechaInactivacion;
-
-	private String nombre;
-
 	private String telefono;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="ultimo_login")
+	@Column(name = "fecha_creacion")
+	private Date fechaCreacion;
+
+	private Boolean estado;
+
+	@Column(name = "fecha_inactivacion")
+	private Timestamp fechaInactivacion;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "ultimo_login")
 	private Date ultimoLogin;
 
-	//bi-directional many-to-one association to Negocio
-	@ManyToOne
-	@JoinColumn(name="negocio_id")
-	private Negocio negocio;
+	@Column(name = "cambio_contrasena")
+	private Boolean cambioContrasena;
 
-	public Usuario() {
+	public UsuarioEntity() {
 	}
 
-	public int getUsuarioId() {
+	public Integer getUsuarioId() {
 		return this.usuarioId;
 	}
 
-	public void setUsuarioId(int usuarioId) {
+	public void setUsuarioId(Integer usuarioId) {
 		this.usuarioId = usuarioId;
 	}
 
-	public byte getCambioContrasena() {
+	public Boolean getCambioContrasena() {
 		return this.cambioContrasena;
 	}
 
-	public void setCambioContrasena(byte cambioContrasena) {
+	public void setCambioContrasena(Boolean cambioContrasena) {
 		this.cambioContrasena = cambioContrasena;
 	}
 
@@ -84,11 +93,11 @@ public class Usuario implements Serializable {
 		this.email = email;
 	}
 
-	public byte getEstado() {
+	public Boolean getEstado() {
 		return this.estado;
 	}
 
-	public void setEstado(byte estado) {
+	public void setEstado(Boolean estado) {
 		this.estado = estado;
 	}
 
@@ -132,11 +141,11 @@ public class Usuario implements Serializable {
 		this.ultimoLogin = ultimoLogin;
 	}
 
-	public Negocio getNegocio() {
+	public NegocioEntity getNegocio() {
 		return this.negocio;
 	}
 
-	public void setNegocio(Negocio negocio) {
+	public void setNegocio(NegocioEntity negocio) {
 		this.negocio = negocio;
 	}
 
