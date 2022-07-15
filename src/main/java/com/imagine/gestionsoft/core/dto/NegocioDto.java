@@ -2,6 +2,10 @@ package com.imagine.gestionsoft.core.dto;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+@JsonInclude(Include.NON_NULL)
 public class NegocioDto {
 
 	private Integer negocioId;
