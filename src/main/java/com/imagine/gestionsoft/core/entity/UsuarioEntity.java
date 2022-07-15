@@ -9,8 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,10 +27,10 @@ public class UsuarioEntity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer usuarioId;
 
-	// bi-directional many-to-one association to Negocio
-	@ManyToOne
-	@JoinColumn(name = "negocio_id")
-	private NegocioEntity negocio;
+	@Column(name = "negocio_id")
+	private Integer negocioId;
+
+	private String documento;
 
 	private String nombre;
 
@@ -67,6 +65,14 @@ public class UsuarioEntity implements Serializable {
 
 	public void setUsuarioId(Integer usuarioId) {
 		this.usuarioId = usuarioId;
+	}
+
+	public String getDocumento() {
+		return documento;
+	}
+
+	public void setDocumento(String documento) {
+		this.documento = documento;
 	}
 
 	public Boolean getCambioContrasena() {
@@ -141,12 +147,12 @@ public class UsuarioEntity implements Serializable {
 		this.ultimoLogin = ultimoLogin;
 	}
 
-	public NegocioEntity getNegocio() {
-		return this.negocio;
+	public Integer getNegocioId() {
+		return negocioId;
 	}
 
-	public void setNegocio(NegocioEntity negocio) {
-		this.negocio = negocio;
+	public void setNegocioId(Integer negocioId) {
+		this.negocioId = negocioId;
 	}
 
 }
