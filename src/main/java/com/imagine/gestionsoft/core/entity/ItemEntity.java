@@ -8,8 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -28,11 +26,11 @@ public class ItemEntity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer itemId;
 
-	// bi-directional many-to-one association to Negocio
-	@ManyToOne
-	@JoinColumn(name = "negocio_id")
-	private NegocioEntity negocio;
+	@Column(name = "negocio_id")
+	private Integer negocioId;
 
+	private String codigo;
+	
 	private String nombre;
 
 	private String descripcion;
@@ -64,39 +62,63 @@ public class ItemEntity implements Serializable {
 	}
 
 	public Integer getItemId() {
-		return this.itemId;
+		return itemId;
 	}
 
 	public void setItemId(Integer itemId) {
 		this.itemId = itemId;
 	}
 
-	public int getCantidad() {
-		return this.cantidad;
+	public Integer getNegocioId() {
+		return negocioId;
 	}
 
-	public void setCantidad(int cantidad) {
-		this.cantidad = cantidad;
+	public void setNegocioId(Integer negocioId) {
+		this.negocioId = negocioId;
 	}
 
-	public double getComisionColaborador() {
-		return this.comisionColaborador;
+	public String getCodigo() {
+		return codigo;
 	}
 
-	public void setComisionColaborador(double comisionColaborador) {
-		this.comisionColaborador = comisionColaborador;
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	public String getDescripcion() {
-		return this.descripcion;
+		return descripcion;
 	}
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
 
+	public Double getValorVenta() {
+		return valorVenta;
+	}
+
+	public void setValorVenta(Double valorVenta) {
+		this.valorVenta = valorVenta;
+	}
+
+	public Double getValorCompra() {
+		return valorCompra;
+	}
+
+	public void setValorCompra(Double valorCompra) {
+		this.valorCompra = valorCompra;
+	}
+
 	public Boolean getEstado() {
-		return this.estado;
+		return estado;
 	}
 
 	public void setEstado(Boolean estado) {
@@ -104,7 +126,7 @@ public class ItemEntity implements Serializable {
 	}
 
 	public Date getFechaCreacion() {
-		return this.fechaCreacion;
+		return fechaCreacion;
 	}
 
 	public void setFechaCreacion(Date fechaCreacion) {
@@ -112,7 +134,7 @@ public class ItemEntity implements Serializable {
 	}
 
 	public Date getFechaInactivacion() {
-		return this.fechaInactivacion;
+		return fechaInactivacion;
 	}
 
 	public void setFechaInactivacion(Date fechaInactivacion) {
@@ -120,43 +142,27 @@ public class ItemEntity implements Serializable {
 	}
 
 	public Boolean getInventario() {
-		return this.inventario;
+		return inventario;
 	}
 
 	public void setInventario(Boolean inventario) {
 		this.inventario = inventario;
 	}
 
-	public String getNombre() {
-		return this.nombre;
+	public Integer getCantidad() {
+		return cantidad;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setCantidad(Integer cantidad) {
+		this.cantidad = cantidad;
 	}
 
-	public double getValorCompra() {
-		return this.valorCompra;
+	public Double getComisionColaborador() {
+		return comisionColaborador;
 	}
 
-	public void setValorCompra(double valorCompra) {
-		this.valorCompra = valorCompra;
-	}
-
-	public double getValorVenta() {
-		return this.valorVenta;
-	}
-
-	public void setValorVenta(double valorVenta) {
-		this.valorVenta = valorVenta;
-	}
-
-	public NegocioEntity getNegocio() {
-		return this.negocio;
-	}
-
-	public void setNegocio(NegocioEntity negocio) {
-		this.negocio = negocio;
+	public void setComisionColaborador(Double comisionColaborador) {
+		this.comisionColaborador = comisionColaborador;
 	}
 
 }
