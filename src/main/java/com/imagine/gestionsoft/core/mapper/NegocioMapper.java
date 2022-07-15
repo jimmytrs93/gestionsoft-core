@@ -10,12 +10,12 @@ import com.imagine.gestionsoft.core.entity.NegocioEntity;
 @Mapper(componentModel = "spring")
 public interface NegocioMapper {
 
-	public NegocioDto dtoToEntity(NegocioEntity entity);
+	public NegocioDto entityToDto(NegocioEntity entity);
 
-	public NegocioEntity entityToDto(NegocioDto dto);
+	public NegocioEntity dtoToEntity(NegocioDto dto);
 
-	public List<NegocioDto> dtoToEntityList(List<NegocioEntity> entity);
+	public List<NegocioDto> entityToDtoList(List<NegocioEntity> entity);
 
-	public List<NegocioEntity> entityToDtoList(List<NegocioDto> dto);
+	public List<NegocioEntity> dtoToEntityList(List<NegocioDto> dto);
 
 }

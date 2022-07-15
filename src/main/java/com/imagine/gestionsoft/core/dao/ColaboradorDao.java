@@ -21,19 +21,27 @@ public class ColaboradorDao {
 
 	public List<ColaboradorDto> findAllByNegocioId(Integer negocioId) {
 		List<ColaboradorEntity> entityList = repository.findAllByNegocioId(negocioId);
-		return mapper.dtoToEntityList(entityList);
+		return mapper.entityToDtoList(entityList);
+	}
+
+	public ColaboradorDto findByColaboradorId(Integer colaboradorId) {
+		Optional<ColaboradorEntity> colOpt = repository.findByColaboradorId(colaboradorId);
+		if (colOpt.isPresent()) {
+			return mapper.entityToDto(colOpt.get());
+		}
+		return null;
 	}
 
 	public ColaboradorDto save(ColaboradorDto dto) {
-		ColaboradorEntity entity = mapper.entityToDto(dto);
+		ColaboradorEntity entity = mapper.dtoToEntity(dto);
 		repository.save(entity);
-		return mapper.dtoToEntity(entity);
+		return mapper.entityToDto(entity);
 	}
 
-	public ColaboradorDto findByDocumento(String documento) {
-		Optional<ColaboradorEntity> colOpt = repository.findByDocumento(documento);
+	public ColaboradorDto findByDocumentoAndNegocioId(String documento, Integer negocioId) {
+		Optional<ColaboradorEntity> colOpt = repository.findByDocumentoAndNegocioId(documento, negocioId);
 		if (colOpt.isPresent()) {
-			return mapper.dtoToEntity(colOpt.get());
+			return mapper.entityToDto(colOpt.get());
 		}
 		return null;
 	}

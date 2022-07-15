@@ -2,6 +2,7 @@ package com.imagine.gestionsoft.core.service.impl;
 
 import static com.imagine.gestionsoft.core.constans.GestionConstantesRespuesta.*;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,10 @@ public class NegocioServiceImpl implements INegocioService {
 		if (negocioList == null || negocioList.size() == 0) {
 			return negocioDao.save(negocio);
 		}
+		
+		negocio.setNegocioId(null);
+		negocio.setFechaCreacion(new Date());
+		negocio.setEstado(true);
 
 		throw new GestionCampoException(COD_ERR_NEGOCIO_DOC_EMAIL_EXISTE, MSJ_ERR_NEGOCIO_DOC_EMAIL_EXISTE);
 

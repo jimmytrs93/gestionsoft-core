@@ -1,5 +1,8 @@
 package com.imagine.gestionsoft.core.service.impl;
 
+import static com.imagine.gestionsoft.core.constans.GestionConstantesRespuesta.COD_ERR_COLABORADOR_EXISTE;
+import static com.imagine.gestionsoft.core.constans.GestionConstantesRespuesta.MSJ_ERR_COLABORADOR_EXISTE;
+
 import java.util.Date;
 import java.util.List;
 
@@ -12,8 +15,6 @@ import com.imagine.gestionsoft.core.exception.GestionCampoException;
 import com.imagine.gestionsoft.core.service.IColaboradorService;
 import com.imagine.gestionsoft.core.service.INegocioService;
 
-import static com.imagine.gestionsoft.core.constans.GestionConstantesRespuesta.*;
-
 @Service
 public class ColaboradorServiceImpl implements IColaboradorService {
 
@@ -23,14 +24,16 @@ public class ColaboradorServiceImpl implements IColaboradorService {
 	private INegocioService negocioService;
 
 	public List<ColaboradorDto> obtenerColaboradoresNegocio(Integer negocioId) {
+		
+		List<ColaboradorDto> colList = colaboradorDao.findAllByNegocioId(negocioId);
 
-		return colaboradorDao.findAllByNegocioId(negocioId);
+		return colList;
 
 	}
 
 	public ColaboradorDto crearColaborador(ColaboradorDto dto) {
 		negocioService.obtenerNegocio(dto.getNegocioId());
-		ColaboradorDto dtoCon = colaboradorDao.findByDocumento(dto.getDocumento());
+		ColaboradorDto dtoCon = colaboradorDao.findByDocumentoAndNegocioId(dto.getDocumento(), dto.getNegocioId());
 
 		if (dtoCon != null) {
 			throw new GestionCampoException(COD_ERR_COLABORADOR_EXISTE, MSJ_ERR_COLABORADOR_EXISTE);
@@ -40,6 +43,11 @@ public class ColaboradorServiceImpl implements IColaboradorService {
 		dto.setEstado(true);
 
 		return colaboradorDao.save(dto);
+	}
+
+	@Override
+	public ColaboradorDto obtenerColaborador(Integer colaboradorId) {
+		return colaboradorDao.findByColaboradorId(colaboradorId);
 	}
 
 }

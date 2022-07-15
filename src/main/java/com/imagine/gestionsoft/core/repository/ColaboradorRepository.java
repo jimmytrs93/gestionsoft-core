@@ -11,6 +11,8 @@ public interface ColaboradorRepository extends JpaRepository<ColaboradorEntity, 
 
 	List<ColaboradorEntity> findAllByNegocioId(Integer negocioId);
 
-	Optional<ColaboradorEntity> findByDocumento(String documento);
+	Optional<ColaboradorEntity> findByColaboradorId(Integer colaboradorId);
+
+	Optional<ColaboradorEntity> findByDocumentoAndNegocioId(String documento, Integer negocioId);
 
 }

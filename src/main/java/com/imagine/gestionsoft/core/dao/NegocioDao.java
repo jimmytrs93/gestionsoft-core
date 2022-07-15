@@ -22,28 +22,28 @@ public class NegocioDao {
 	public NegocioDto findById(Integer id) {
 		Optional<NegocioEntity> negocioOpt = negocioRepository.findById(id);
 		if (negocioOpt.isPresent()) {
-			return negocioMapper.dtoToEntity(negocioOpt.get());
+			return negocioMapper.entityToDto(negocioOpt.get());
 		}
 		return null;
 	}
 
 	public List<NegocioDto> findAll() {
 		List<NegocioEntity> entityList = negocioRepository.findAll();
-		return negocioMapper.dtoToEntityList(entityList);
+		return negocioMapper.entityToDtoList(entityList);
 	}
 
 	public List<NegocioDto> findAllByDocumentoOrEmail(String doc, String email) {
 		Optional<List<NegocioEntity>> listOpt = negocioRepository.findAllByDocumentoOrEmail(doc, email);
 		if (listOpt.isPresent()) {
-			return negocioMapper.dtoToEntityList(listOpt.get());
+			return negocioMapper.entityToDtoList(listOpt.get());
 		}
 		return null;
 	}
 
 	public NegocioDto save(NegocioDto negocioDto) {
-		NegocioEntity entity = negocioMapper.entityToDto(negocioDto);
+		NegocioEntity entity = negocioMapper.dtoToEntity(negocioDto);
 		negocioRepository.save(entity);
-		return negocioMapper.dtoToEntity(entity);
+		return negocioMapper.entityToDto(entity);
 	}
 
 }

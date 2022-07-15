@@ -10,12 +10,12 @@ import com.imagine.gestionsoft.core.entity.ColaboradorEntity;
 @Mapper(componentModel = "spring")
 public interface ColaboradorMapper {
 
-	public ColaboradorDto dtoToEntity(ColaboradorEntity entity);
+	public ColaboradorDto entityToDto(ColaboradorEntity entity);
 
-	public ColaboradorEntity entityToDto(ColaboradorDto dto);
+	public ColaboradorEntity dtoToEntity(ColaboradorDto dto);
 
-	public List<ColaboradorDto> dtoToEntityList(List<ColaboradorEntity> entity);
+	public List<ColaboradorDto> entityToDtoList(List<ColaboradorEntity> entity);
 
-	public List<ColaboradorEntity> entityToDtoList(List<ColaboradorDto> dto);
+	public List<ColaboradorEntity> dtoToEntityList(List<ColaboradorDto> dto);
 
 }
