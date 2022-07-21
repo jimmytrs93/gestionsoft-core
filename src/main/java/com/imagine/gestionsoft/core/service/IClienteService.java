@@ -8,7 +8,7 @@ public interface IClienteService {
 
 	public ClienteDto crearCliente(ClienteDto clienteDto);
 
-	public ClienteDto obtenerCliente(Integer clienteId);
+	public ClienteDto obtenerClienteNegocio(Integer clienteId, Integer negocioId);
 
 	public List<ClienteDto> obtenerClientesNegocio(Integer negocioId);
 

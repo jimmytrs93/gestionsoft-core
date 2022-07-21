@@ -28,6 +28,14 @@ public class ClienteDao {
 		return null;
 	}
 
+	public ClienteDto findByClienteIdAndNegocio(Integer clienteId, Integer negocio) {
+		Optional<ClienteEntity> clienteOpt = repository.findByClienteIdAndNegocio(clienteId, negocio);
+		if (clienteOpt.isPresent()) {
+			return mapper.entityToDto(clienteOpt.get());
+		}
+		return null;
+	}
+
 	public ClienteDto save(ClienteDto clienteDto) {
 		ClienteEntity entity = mapper.dtoToEntity(clienteDto);
 		repository.save(entity);

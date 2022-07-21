@@ -12,6 +12,8 @@ import com.imagine.gestionsoft.core.entity.ClienteEntity;
 public interface ClienteRepository extends JpaRepository<ClienteEntity, Integer> {
 
 	Optional<ClienteEntity> findByClienteId(Integer clienteId);
+	
+	Optional<ClienteEntity> findByClienteIdAndNegocio(Integer clienteId, Integer negocio);
 
 	List<ClienteEntity> findByDocumentoAndNegocioId(String documento, Integer negocioId);
 

@@ -3,6 +3,10 @@ package com.imagine.gestionsoft.core.dto;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+@JsonInclude(Include.NON_NULL)
 public class UsuarioDto {
 
 	private Integer usuarioId;

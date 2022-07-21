@@ -42,13 +42,17 @@ public class ClienteServiceImpl implements IClienteService {
 		return clienteDao.save(clienteDto);
 	}
 
-	@Override
-	public ClienteDto obtenerCliente(Integer clienteId) {
-		return clienteDao.findByClienteId(clienteId);
+	public ClienteDto obtenerClienteNegocio(Integer clienteId, Integer negocioId) {
+		negocioService.obtenerNegocio(negocioId);
+		ClienteDto cliente = clienteDao.findByClienteIdAndNegocio(clienteId, negocioId);
+		if(cliente == null) {
+			throw new GestionCampoException(COD_ERR_CLIENTE_EXISTE, MSJ_ERR_CLIENTE_EXISTE);
+		}
+		return cliente; 
 	}
 
-	@Override
 	public List<ClienteDto> obtenerClientesNegocio(Integer negocioId) {
+		negocioService.obtenerNegocio(negocioId);
 		return clienteDao.findAllByNegocioId(negocioId);
 	}
 

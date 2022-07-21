@@ -8,8 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -28,20 +26,14 @@ public class FacturaEntity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer facturaId;
 
-	// bi-directional many-to-one association to Negocio
-	@ManyToOne
-	@JoinColumn(name = "negocio_id")
-	private NegocioEntity negocio;
+	@Column(name = "negocio_id")
+	private Integer negocioId;
 
-	// bi-directional many-to-one association to Cliente
-	@ManyToOne
-	@JoinColumn(name = "cliente_id")
-	private ClienteEntity cliente;
+	@Column(name = "cliente_id")
+	private Integer clienteId;
 
-	// bi-directional many-to-one association to FacturaEstado
-	@ManyToOne
-	@JoinColumn(name = "estado_factura_id")
-	private FacturaEstadoEntity facturaEstado;
+	@Column(name = "estado_factura_id")
+	private Integer facturaEstado;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "fecha_creacion")
@@ -58,59 +50,62 @@ public class FacturaEntity implements Serializable {
 	}
 
 	public Integer getFacturaId() {
-		return this.facturaId;
+		return facturaId;
 	}
 
 	public void setFacturaId(Integer facturaId) {
 		this.facturaId = facturaId;
 	}
 
+	public Integer getNegocioId() {
+		return negocioId;
+	}
+
+	public void setNegocioId(Integer negocioId) {
+		this.negocioId = negocioId;
+	}
+
+	public Integer getClienteId() {
+		return clienteId;
+	}
+
+	public void setClienteId(Integer clienteId) {
+		this.clienteId = clienteId;
+	}
+
+	public Integer getFacturaEstado() {
+		return facturaEstado;
+	}
+
+	public void setFacturaEstado(Integer facturaEstado) {
+		this.facturaEstado = facturaEstado;
+	}
+
 	public Date getFechaCreacion() {
-		return this.fechaCreacion;
+		return fechaCreacion;
 	}
 
 	public void setFechaCreacion(Date fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
 
-	public Date getFechaModificacion() {
-		return this.fechaModificacion;
-	}
-
-	public void setFechaModificacion(Date fechaModificacion) {
-		this.fechaModificacion = fechaModificacion;
-	}
-
 	public String getMetodoPago() {
-		return this.metodoPago;
+		return metodoPago;
 	}
 
 	public void setMetodoPago(String metodoPago) {
 		this.metodoPago = metodoPago;
 	}
 
-	public ClienteEntity getCliente() {
-		return this.cliente;
+	public Date getFechaModificacion() {
+		return fechaModificacion;
 	}
 
-	public void setCliente(ClienteEntity cliente) {
-		this.cliente = cliente;
+	public void setFechaModificacion(Date fechaModificacion) {
+		this.fechaModificacion = fechaModificacion;
 	}
 
-	public FacturaEstadoEntity getFacturaEstado() {
-		return this.facturaEstado;
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
-
-	public void setFacturaEstado(FacturaEstadoEntity facturaEstado) {
-		this.facturaEstado = facturaEstado;
-	}
-
-	public NegocioEntity getNegocio() {
-		return this.negocio;
-	}
-
-	public void setNegocio(NegocioEntity negocio) {
-		this.negocio = negocio;
-	}
-
 }

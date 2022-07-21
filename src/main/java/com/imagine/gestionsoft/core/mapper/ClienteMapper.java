@@ -14,8 +14,8 @@ public interface ClienteMapper {
 
 	public ClienteDto entityToDto(ClienteEntity entity);
 
-	public List<ClienteEntity> dtoToEntityList(List<ClienteDto> dto);
+	public List<ClienteEntity> dtoToEntityList(List<ClienteDto> dtos);
 
-	public List<ClienteDto> entityToDtoList(List<ClienteEntity> entity);
+	public List<ClienteDto> entityToDtoList(List<ClienteEntity> entities);
 
 }
