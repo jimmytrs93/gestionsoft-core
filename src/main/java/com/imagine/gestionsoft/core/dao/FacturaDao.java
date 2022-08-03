@@ -31,11 +31,19 @@ public class FacturaDao {
 		List<FacturaEntity> entities = repository.findAllByNegocioId(negocio);
 		return mapper.entityToDtoList(entities);
 	}
-	
+
 	public FacturaDto save(FacturaDto dto) {
 		FacturaEntity entity = mapper.dtoToEntity(dto);
 		repository.save(entity);
 		return mapper.entityToDto(entity);
+	}
+
+	public FacturaDto findByFacturaIdAndFacturaEstado(Integer factura, Integer estado) {
+		Optional<FacturaEntity> entityOpt = repository.findByFacturaIdAndFacturaEstado(factura, estado);
+		if (entityOpt.isPresent()) {
+			return mapper.entityToDto(entityOpt.get());
+		}
+		return null;
 	}
 
 }

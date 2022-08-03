@@ -8,8 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -28,20 +26,14 @@ public class RegistroEntity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer registroId;
 
-	// bi-directional many-to-one association to Factura
-	@ManyToOne
-	@JoinColumn(name = "factura_id")
-	private FacturaEntity factura;
+	@Column(name = "factura_id")
+	private Integer facturaId;
 
-	// bi-directional many-to-one association to Item
-	@ManyToOne
-	@JoinColumn(name = "item_id")
-	private ItemEntity item;
+	@Column(name = "item_id")
+	private Integer itemId;
 
-	// bi-directional many-to-one association to Colaborador
-	@ManyToOne
-	@JoinColumn(name = "colaborador_id")
-	private ColaboradorEntity colaborador;
+	@Column(name = "colaborador_id")
+	private Integer colaboradorId;
 
 	@Column(name = "comision_colaborador")
 	private Double comisionColaborador;
@@ -65,31 +57,63 @@ public class RegistroEntity implements Serializable {
 	}
 
 	public Integer getRegistroId() {
-		return this.registroId;
+		return registroId;
 	}
 
 	public void setRegistroId(Integer registroId) {
 		this.registroId = registroId;
 	}
 
-	public Integer getCantidad() {
-		return this.cantidad;
+	public Integer getFacturaId() {
+		return facturaId;
 	}
 
-	public void setCantidad(Integer cantidad) {
-		this.cantidad = cantidad;
+	public void setFacturaId(Integer facturaId) {
+		this.facturaId = facturaId;
+	}
+
+	public Integer getItemId() {
+		return itemId;
+	}
+
+	public void setItemId(Integer itemId) {
+		this.itemId = itemId;
+	}
+
+	public Integer getColaboradorId() {
+		return colaboradorId;
+	}
+
+	public void setColaboradorId(Integer colaboradorId) {
+		this.colaboradorId = colaboradorId;
 	}
 
 	public Double getComisionColaborador() {
-		return this.comisionColaborador;
+		return comisionColaborador;
 	}
 
 	public void setComisionColaborador(Double comisionColaborador) {
 		this.comisionColaborador = comisionColaborador;
 	}
 
+	public Integer getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(Integer cantidad) {
+		this.cantidad = cantidad;
+	}
+
+	public Double getValorVenta() {
+		return valorVenta;
+	}
+
+	public void setValorVenta(Double valorVenta) {
+		this.valorVenta = valorVenta;
+	}
+
 	public Boolean getEstado() {
-		return this.estado;
+		return estado;
 	}
 
 	public void setEstado(Boolean estado) {
@@ -97,7 +121,7 @@ public class RegistroEntity implements Serializable {
 	}
 
 	public Date getFechaModificacion() {
-		return this.fechaModificacion;
+		return fechaModificacion;
 	}
 
 	public void setFechaModificacion(Date fechaModificacion) {
@@ -105,43 +129,10 @@ public class RegistroEntity implements Serializable {
 	}
 
 	public Date getFechaRegistro() {
-		return this.fechaRegistro;
+		return fechaRegistro;
 	}
 
 	public void setFechaRegistro(Date fechaRegistro) {
 		this.fechaRegistro = fechaRegistro;
 	}
-
-	public Double getValorVenta() {
-		return this.valorVenta;
-	}
-
-	public void setValorVenta(Double valorVenta) {
-		this.valorVenta = valorVenta;
-	}
-
-	public ColaboradorEntity getColaborador() {
-		return this.colaborador;
-	}
-
-	public void setColaborador(ColaboradorEntity colaborador) {
-		this.colaborador = colaborador;
-	}
-
-	public FacturaEntity getFactura() {
-		return this.factura;
-	}
-
-	public void setFactura(FacturaEntity factura) {
-		this.factura = factura;
-	}
-
-	public ItemEntity getItem() {
-		return this.item;
-	}
-
-	public void setItem(ItemEntity item) {
-		this.item = item;
-	}
-
 }

@@ -10,6 +10,8 @@ public interface IFacturaService {
 
 	public FacturaDto consultarFactura(Integer factura, Integer negocio);
 	
+	public FacturaDto consultarFacturaEstado(Integer factura, Integer estado);
+	
 	public FacturaDto crearFactura(FacturaDto dto);
 
 }

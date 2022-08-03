@@ -12,7 +12,8 @@ import com.imagine.gestionsoft.core.entity.FacturaEntity;
 public interface FacturaRepository extends JpaRepository<FacturaEntity, Integer> {
 
 	Optional<FacturaEntity> findByFacturaIdAndNegocioId(Integer factura, Integer negocio);
-	
+
 	List<FacturaEntity> findAllByNegocioId(Integer negocio);
 
+	Optional<FacturaEntity> findByFacturaIdAndFacturaEstado(Integer factura, Integer estado);
 }

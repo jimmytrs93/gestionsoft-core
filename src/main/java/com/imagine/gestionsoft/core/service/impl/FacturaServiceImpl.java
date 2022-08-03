@@ -6,9 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.imagine.gestionsoft.core.dao.FacturaDao;
 import com.imagine.gestionsoft.core.dto.FacturaDto;
+import com.imagine.gestionsoft.core.exception.GestionCampoException;
 import com.imagine.gestionsoft.core.service.IClienteService;
 import com.imagine.gestionsoft.core.service.IFacturaService;
 import com.imagine.gestionsoft.core.service.INegocioService;
+
+import static com.imagine.gestionsoft.core.constans.GestionConstantesRespuesta.*;
 
 public class FacturaServiceImpl implements IFacturaService {
 
@@ -28,13 +31,26 @@ public class FacturaServiceImpl implements IFacturaService {
 	@Override
 	public FacturaDto consultarFactura(Integer factura, Integer negocio) {
 		negocioService.obtenerNegocio(negocio);
-		return facturaDao.findByFacturaIdAndNegocioId(factura, negocio);
+		FacturaDto dto = facturaDao.findByFacturaIdAndNegocioId(factura, negocio);
+		if (dto == null) {
+			throw new GestionCampoException(COD_ERR_FACTURA_NEG_NO_EXISTE, MSJ_ERR_FACTURA_NEG_NO_EXISTE);
+		}
+		return dto;
 	}
 
 	public FacturaDto crearFactura(FacturaDto dto) {
 		clienteService.obtenerClienteNegocio(dto.getClienteId(), dto.getNegocioId());
 		dto.setFacturaId(null);
 		return facturaDao.save(dto);
+	}
+
+	@Override
+	public FacturaDto consultarFacturaEstado(Integer factura, Integer estado) {
+		FacturaDto dto = facturaDao.findByFacturaIdAndFacturaEstado(factura, estado);
+		if (dto == null) {
+			throw new GestionCampoException(COD_ERR_FACT_ESTADO_NO_EXISTE, MSJ_ERR_FACT_ESTADO_NO_EXISTE);
+		}
+		return dto;
 	}
 
 }
