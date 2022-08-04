@@ -8,8 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -28,28 +26,24 @@ public class ReservaEntity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer reservaId;
 
-	// bi-directional many-to-one association to Negocio
-	@ManyToOne
-	@JoinColumn(name = "negocio_id")
-	private NegocioEntity negocio;
+	@Column(name = "negocio_id")
+	private Integer negocioId;
 
-	// bi-directional many-to-one association to Item
-	@ManyToOne
-	@JoinColumn(name = "item_id")
-	private ItemEntity item;
+	@Column(name = "item_id")
+	private Integer itemId;
 
-	// bi-directional many-to-one association to Cliente
-	@ManyToOne
-	@JoinColumn(name = "cliente_id")
-	private ClienteEntity cliente;
+	@Column(name = "cliente_id")
+	private Integer clienteId;
 
-	// bi-directional many-to-one association to Colaborador
-	@ManyToOne
-	@JoinColumn(name = "colaborador_id")
-	private ColaboradorEntity colaborador;
+	@Column(name = "colaborador_id")
+	private Integer colaboradorId;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fecha;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "fecha_creacion")
+	private Date fechaCreacion;
 
 	private Boolean estado;
 
@@ -92,6 +86,14 @@ public class ReservaEntity implements Serializable {
 		this.fecha = fecha;
 	}
 
+	public Date getFechaCreacion() {
+		return fechaCreacion;
+	}
+
+	public void setFechaCreacion(Date fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
+	}
+
 	public String getObservacion() {
 		return this.observacion;
 	}
@@ -100,36 +102,39 @@ public class ReservaEntity implements Serializable {
 		this.observacion = observacion;
 	}
 
-	public ClienteEntity getCliente() {
-		return this.cliente;
+	public Integer getNegocioId() {
+		return negocioId;
 	}
 
-	public void setCliente(ClienteEntity cliente) {
-		this.cliente = cliente;
+	public void setNegocioId(Integer negocioId) {
+		this.negocioId = negocioId;
 	}
 
-	public ColaboradorEntity getColaborador() {
-		return this.colaborador;
+	public Integer getItemId() {
+		return itemId;
 	}
 
-	public void setColaborador(ColaboradorEntity colaborador) {
-		this.colaborador = colaborador;
+	public void setItemId(Integer itemId) {
+		this.itemId = itemId;
 	}
 
-	public ItemEntity getItem() {
-		return this.item;
+	public Integer getClienteId() {
+		return clienteId;
 	}
 
-	public void setItem(ItemEntity item) {
-		this.item = item;
+	public void setClienteId(Integer clienteId) {
+		this.clienteId = clienteId;
 	}
 
-	public NegocioEntity getNegocio() {
-		return this.negocio;
+	public Integer getColaboradorId() {
+		return colaboradorId;
 	}
 
-	public void setNegocio(NegocioEntity negocio) {
-		this.negocio = negocio;
+	public void setColaboradorId(Integer colaboradorId) {
+		this.colaboradorId = colaboradorId;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 }
