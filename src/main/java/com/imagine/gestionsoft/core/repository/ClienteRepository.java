@@ -13,7 +13,7 @@ public interface ClienteRepository extends JpaRepository<ClienteEntity, Integer>
 
 	Optional<ClienteEntity> findByClienteId(Integer clienteId);
 	
-	Optional<ClienteEntity> findByClienteIdAndNegocio(Integer clienteId, Integer negocio);
+	Optional<ClienteEntity> findByClienteIdAndNegocioId(Integer clienteId, Integer negocioId);
 
 	List<ClienteEntity> findByDocumentoAndNegocioId(String documento, Integer negocioId);
 

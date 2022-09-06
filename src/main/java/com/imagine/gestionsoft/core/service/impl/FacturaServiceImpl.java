@@ -3,6 +3,7 @@ package com.imagine.gestionsoft.core.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.imagine.gestionsoft.core.dao.FacturaDao;
 import com.imagine.gestionsoft.core.dto.FacturaDto;
@@ -13,6 +14,7 @@ import com.imagine.gestionsoft.core.service.INegocioService;
 
 import static com.imagine.gestionsoft.core.constans.GestionConstantesRespuesta.*;
 
+@Service
 public class FacturaServiceImpl implements IFacturaService {
 
 	@Autowired

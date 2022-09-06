@@ -44,7 +44,7 @@ public class ClienteServiceImpl implements IClienteService {
 
 	public ClienteDto obtenerClienteNegocio(Integer clienteId, Integer negocioId) {
 		negocioService.obtenerNegocio(negocioId);
-		ClienteDto cliente = clienteDao.findByClienteIdAndNegocio(clienteId, negocioId);
+		ClienteDto cliente = clienteDao.findByClienteIdAndNegocioId(clienteId, negocioId);
 		if(cliente == null) {
 			throw new GestionCampoException(COD_ERR_CLIENTE_EXISTE, MSJ_ERR_CLIENTE_EXISTE);
 		}

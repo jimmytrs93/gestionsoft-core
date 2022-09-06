@@ -28,8 +28,8 @@ public class ClienteDao {
 		return null;
 	}
 
-	public ClienteDto findByClienteIdAndNegocio(Integer clienteId, Integer negocio) {
-		Optional<ClienteEntity> clienteOpt = repository.findByClienteIdAndNegocio(clienteId, negocio);
+	public ClienteDto findByClienteIdAndNegocioId(Integer clienteId, Integer negocio) {
+		Optional<ClienteEntity> clienteOpt = repository.findByClienteIdAndNegocioId(clienteId, negocio);
 		if (clienteOpt.isPresent()) {
 			return mapper.entityToDto(clienteOpt.get());
 		}

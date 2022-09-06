@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.imagine.gestionsoft.core.dao.UsuarioDao;
 import com.imagine.gestionsoft.core.dto.UsuarioDto;
@@ -13,7 +14,8 @@ import com.imagine.gestionsoft.core.exception.GestionCampoException;
 import com.imagine.gestionsoft.core.service.INegocioService;
 import com.imagine.gestionsoft.core.service.IUsuarioService;
 
-public class UsuarioClienteImpl implements IUsuarioService {
+@Service
+public class UsuarioServiceImpl implements IUsuarioService {
 
 	@Autowired
 	private UsuarioDao usuarioDao;
