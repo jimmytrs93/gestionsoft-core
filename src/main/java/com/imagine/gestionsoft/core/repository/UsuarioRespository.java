@@ -4,19 +4,17 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import com.imagine.gestionsoft.core.entity.UsuarioEntity;
 
-@Repository
 public interface UsuarioRespository extends JpaRepository<UsuarioEntity, Integer> {
-	
+
 	Optional<UsuarioEntity> findByDocumentoAndNegocioId(String documento, Integer negocioId);
-	
+
 	Optional<UsuarioEntity> findByUsuarioIdAndNegocioId(Integer usuarioId, Integer negocioId);
-	
+
 	List<UsuarioEntity> findAllByNegocioId(Integer negocioId);
-	
-	
+
+	Optional<UsuarioEntity> findByEmail(String email);
 
 }

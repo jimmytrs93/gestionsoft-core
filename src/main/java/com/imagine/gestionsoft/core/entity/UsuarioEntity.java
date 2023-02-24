@@ -3,12 +3,19 @@ package com.imagine.gestionsoft.core.entity;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -55,6 +62,10 @@ public class UsuarioEntity implements Serializable {
 
 	@Column(name = "cambio_contrasena")
 	private Boolean cambioContrasena;
+
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "rol_usuario", joinColumns = @JoinColumn(name = "usuarioId", referencedColumnName = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "rolId", referencedColumnName = "rol_id"))
+	private Set<RolEntity> roles = new HashSet<>();
 
 	public UsuarioEntity() {
 	}
@@ -153,6 +164,14 @@ public class UsuarioEntity implements Serializable {
 
 	public void setNegocioId(Integer negocioId) {
 		this.negocioId = negocioId;
+	}
+
+	public Set<RolEntity> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<RolEntity> roles) {
+		this.roles = roles;
 	}
 
 }
